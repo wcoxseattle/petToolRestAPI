@@ -5,7 +5,7 @@ using PetToolAPI.Models;
 namespace PetToolAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PetTypesController : ControllerBase
     {
         private readonly AppDbContext _context;

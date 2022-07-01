@@ -23,10 +23,6 @@ var connStrbuilder = new NpgsqlConnectionStringBuilder(connectionString)
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseNpgsql(connStrbuilder.ConnectionString));
 
-Debug.WriteLine("contr = " + connectionString);
-Debug.WriteLine(dbPassword);
-
-
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "PetToolsApi", Version = "v1" });
