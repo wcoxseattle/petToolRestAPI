@@ -1,15 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TodoApi.Models
+namespace PetToolAPI.Models
 {
-    public class TodoContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public TodoContext(DbContextOptions<TodoContext> options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
 
         }
+
         public DbSet<TodoItem> TodoItems { get; set; } = null!;
+
+
+
     }
 }

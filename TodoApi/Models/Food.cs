@@ -1,4 +1,4 @@
-﻿namespace TodoApi.Models
+﻿namespace PetToolAPI.Models
 {
     public class Food
     {

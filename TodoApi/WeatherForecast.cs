@@ -1,4 +1,4 @@
-namespace TodoApi
+namespace PetToolAPI
 {
     public class WeatherForecast
     {

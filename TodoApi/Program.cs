@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<TodoContext>(opt =>
+builder.Services.AddDbContext<DbContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 //builder.Services.AddSwaggerGen(c =>
 //{

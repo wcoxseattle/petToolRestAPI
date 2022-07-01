@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using PetToolAPI;
 
-namespace TodoApi.Controllers
+namespace PetToolAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
