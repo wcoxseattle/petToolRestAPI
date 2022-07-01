@@ -9,11 +9,11 @@
     }
   },
   "profiles": {
-    "TodoApi": {
+    "PetToolsApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "api/todoitems",
+      "launchUrl": "api/pettypes",
       "applicationUrl": "https://localhost:7109;http://localhost:5109",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

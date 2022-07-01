@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TodoApi.Models;
+using Npgsql;
+using PetToolAPI.Models;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,12 +10,27 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<DbContext>(opt =>
-    opt.UseInMemoryDatabase("TodoList"));
-//builder.Services.AddSwaggerGen(c =>
-//{
-//    c.SwaggerDoc("v1", new() { Title = "TodoApi", Version = "v1" });
-//});
+
+// Add postgres SQL connection
+var connectionString = builder.Configuration.GetConnectionString(
+    "PetToolDB");
+var dbPassword = builder.Configuration.GetValue<string>(
+    "Secrets:PetToolDBPass");
+var connStrbuilder = new NpgsqlConnectionStringBuilder(connectionString)
+{
+    Password = dbPassword
+};
+builder.Services.AddDbContext<AppDbContext>(
+    options => options.UseNpgsql(connStrbuilder.ConnectionString));
+
+Debug.WriteLine("contr = " + connectionString);
+Debug.WriteLine(dbPassword);
+
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "PetToolsApi", Version = "v1" });
+});
 
 var app = builder.Build();
 
@@ -21,8 +38,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    //app.UseSwagger();
-    //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoApi v1"));
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PetToolsApi v1"));
 }
 
 app.UseHttpsRedirection();
