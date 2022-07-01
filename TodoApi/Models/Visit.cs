@@ -2,10 +2,10 @@
 {
     public class Visit
     {
-        public long id { get; set; }
-        public long pet_id { get; set; }
-        public long person_id { get; set; }
-        public long activity_id { get; set; }
-        public DateTime created_on { get; set; }
+        public long Id { get; set; }
+        public long PetId { get; set; }
+        public long PersonId { get; set; }
+        public long ActivityId { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

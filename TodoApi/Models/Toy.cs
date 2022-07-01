@@ -2,9 +2,9 @@
 {
     public class Toy
     {
-        public long id { get; set; }
-        public string description { get; set; }
-        public string sku { get; set; }
-        public string? brand { get; set; }
+        public long Id { get; set; }
+        public string Description { get; set; }
+        public string Sku { get; set; }
+        public string? Brand { get; set; }
     }
 }

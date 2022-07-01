@@ -2,14 +2,14 @@
 {
     public class Person
     {
-        public long id { get; set; }
-        public string f_name { get; set; }
-        public string l_name { get; set; }
-        public string? birth_sex { get; set; }  //Optional
-        public string? gender { get; set; } //Optional
-        public DateOnly date_of_birth { get; set; }
-        public DateTime created_on { get; set; }
-        public DateTime? modified_on { get; set; }  //Optional
+        public long Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string? BirthSex { get; set; }  //Optional
+        public string? Gender { get; set; } //Optional
+        public DateOnly DateOfBirth { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }  //Optional
 
     }
 }

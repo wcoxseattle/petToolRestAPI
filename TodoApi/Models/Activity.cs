@@ -2,12 +2,12 @@
 {
     public class Activity
     {
-        public long id { get; set; }
-        public long activity_type_id { get; set; }
-        public long food_id { get; set; }
-        public long toy_id { get; set; }
-        public string? notes { get; set; }
-        public long flag_id { get; set; }
+        public long Id { get; set; }
+        public long ActivityTypeId { get; set; }
+        public long FoodId { get; set; }
+        public long ToyId { get; set; }
+        public string? Notes { get; set; }
+        public long FlagId { get; set; }
 
     }
 }
