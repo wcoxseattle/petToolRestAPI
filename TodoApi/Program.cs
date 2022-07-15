@@ -14,14 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 // Add postgres SQL connection
 var connectionString = builder.Configuration.GetConnectionString(
     "PetToolDB");
-var dbPassword = builder.Configuration.GetValue<string>(
-    "Secrets:PetToolDBPass");
-var connStrbuilder = new NpgsqlConnectionStringBuilder(connectionString)
-{
-    Password = dbPassword
-};
 builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseNpgsql(connStrbuilder.ConnectionString));
+    options => options.UseNpgsql(connectionString));
 
 builder.Services.AddSwaggerGen(c =>
 {
