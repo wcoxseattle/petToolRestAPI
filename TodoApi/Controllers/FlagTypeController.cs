@@ -2,39 +2,39 @@
 using Microsoft.EntityFrameworkCore;
 using PetToolAPI.Models;
 
-namespace PetToolAPI.Controllers
+namespace FlagToolAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ActivityTypesController : ControllerBase
+    public class FlagTypesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public ActivityTypesController(AppDbContext context)
+        public FlagTypesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/ActivityTypes
+        // GET: api/FlagTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ActivityType>>> GetActivityTypes()
+        public async Task<ActionResult<IEnumerable<FlagType>>> GetFlagTypes()
         {
-            if (_context.ActivityTypes == null)
+            if (_context.FlagTypes == null)
             {
                 return NotFound();
             }
-            return await _context.ActivityTypes.ToListAsync();
+            return await _context.FlagTypes.ToListAsync();
         }
 
-        // GET: api/ActivityTypes/5
+        // GET: api/FlagTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ActivityType>> GetActivityType(long id)
+        public async Task<ActionResult<FlagType>> GetFlagType(long id)
         {
-            if (_context.ActivityTypes == null)
+            if (_context.FlagTypes == null)
             {
                 return NotFound();
             }
-            var record = await _context.ActivityTypes.FindAsync(id);
+            var record = await _context.FlagTypes.FindAsync(id);
 
             if (record == null)
             {
@@ -44,10 +44,10 @@ namespace PetToolAPI.Controllers
             return record;
         }
 
-        // PUT: api/ActivityTypes/5
+        // PUT: api/FlagTypes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutActivityType(long id, ActivityType record)
+        public async Task<IActionResult> PutFlagType(long id, FlagType record)
         {
             if (id != record.Id)
             {
@@ -62,7 +62,7 @@ namespace PetToolAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ActivityTypeExists(id))
+                if (!FlagTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -75,45 +75,45 @@ namespace PetToolAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/ActivityTypes
+        // POST: api/FlagTypes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ActivityType>> PostActivityType(ActivityType record)
+        public async Task<ActionResult<FlagType>> PostFlagType(FlagType record)
         {
-            if (_context.ActivityTypes == null)
+            if (_context.FlagTypes == null)
             {
-                return Problem("Entity set '_context.ActivityTypes'  is null.");
+                return Problem("Entity set '_context.FlagTypes'  is null.");
             }
-            _context.ActivityTypes.Add(record);
+            _context.FlagTypes.Add(record);
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetActivityType", new { id = ActivityType.ID }, ActivityType);
-            return CreatedAtAction(nameof(GetActivityType), new { id = record.Id }, record);
+            //return CreatedAtAction("GetFlagType", new { id = FlagType.ID }, FlagType);
+            return CreatedAtAction(nameof(GetFlagType), new { id = record.Id }, record);
         }
 
-        // DELETE: api/ActivityTypes/5
+        // DELETE: api/FlagTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteActivityType(long id)
+        public async Task<IActionResult> DeleteFlagType(long id)
         {
-            if (_context.ActivityTypes == null)
+            if (_context.FlagTypes == null)
             {
                 return NotFound();
             }
-            var record = await _context.ActivityTypes.FindAsync(id);
+            var record = await _context.FlagTypes.FindAsync(id);
             if (record == null)
             {
                 return NotFound();
             }
 
-            _context.ActivityTypes.Remove(record);
+            _context.FlagTypes.Remove(record);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ActivityTypeExists(long id)
+        private bool FlagTypeExists(long id)
         {
-            return (_context.ActivityTypes?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.FlagTypes?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
