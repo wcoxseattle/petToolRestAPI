@@ -35,3 +35,16 @@ dotnet ef database update
 
 ### Swagger Documentation
 Hosted at localhost/swagger
+
+
+### Endpoints
+- (Activities) https://localhost:7109/api/activities
+- (Activity Types) https://localhost:7109/api/activitytypes
+- (Flag Types) https://localhost:7109/api/flagtypes
+- (Foods) https://localhost:7109/api/foods
+- (People) https://localhost:7109/api/people
+- (Pets) https://localhost:7109/api/pets
+- (Pet types) https://localhost:7109/api/pettypes
+- (Toys) https://localhost:7109/api/toys
+- (Visits) https://localhost:7109/api/visits
+- (Swagger docs) https://localhost:7109/swagger

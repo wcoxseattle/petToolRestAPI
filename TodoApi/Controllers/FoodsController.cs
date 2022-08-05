@@ -6,35 +6,36 @@ namespace PetToolAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PetTypesController : ControllerBase
+    public class FoodsController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public PetTypesController(AppDbContext context)
+        public FoodsController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/PetTypes
+        // GET: api/Foods
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PetType>>> GetPetTypes()
+        public async Task<ActionResult<IEnumerable<Food>>> GetFoods()
         {
-            if (_context.PetTypes == null)
+            if (_context.Foods == null)
             {
                 return NotFound();
             }
-            return await _context.PetTypes.ToListAsync();
+
+            return await _context.Foods.ToListAsync();
         }
 
-        // GET: api/PetTypes/5
+        // GET: api/Foods/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PetType>> GetPetType(long id)
+        public async Task<ActionResult<Food>> GetFood(long id)
         {
-            if (_context.PetTypes == null)
+            if (_context.Foods == null)
             {
                 return NotFound();
             }
-            var record = await _context.PetTypes.FindAsync(id);
+            var record = await _context.Foods.FindAsync(id);
 
             if (record == null)
             {
@@ -44,10 +45,10 @@ namespace PetToolAPI.Controllers
             return record;
         }
 
-        // PUT: api/PetTypes/5
+        // PUT: api/Foods/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPetType(long id, PetType record)
+        public async Task<IActionResult> PutFood(long id, Food record)
         {
             if (id != record.Id)
             {
@@ -62,7 +63,7 @@ namespace PetToolAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PetTypeExists(id))
+                if (!FoodExists(id))
                 {
                     return NotFound();
                 }
@@ -75,45 +76,45 @@ namespace PetToolAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/PetTypes
+        // POST: api/Foods
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PetType>> PostPetType(PetType record)
+        public async Task<ActionResult<Food>> PostFood(Food record)
         {
-            if (_context.PetTypes == null)
+            if (_context.Foods == null)
             {
-                return Problem("Entity set '_context.PetTypes'  is null.");
+                return Problem("Entity set '_context.Foods'  is null.");
             }
-            _context.PetTypes.Add(record);
+            _context.Foods.Add(record);
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetPetType", new { id = PetType.ID }, PetType);
-            return CreatedAtAction(nameof(GetPetType), new { id = record.Id }, record);
+            //return CreatedAtAction("GetFood", new { id = Food.ID }, Food);
+            return CreatedAtAction(nameof(GetFood), new { id = record.Id }, record);
         }
 
-        // DELETE: api/PetTypes/5
+        // DELETE: api/Foods/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePetType(long id)
+        public async Task<IActionResult> DeleteFood(long id)
         {
-            if (_context.PetTypes == null)
+            if (_context.Foods == null)
             {
                 return NotFound();
             }
-            var record = await _context.PetTypes.FindAsync(id);
+            var record = await _context.Foods.FindAsync(id);
             if (record == null)
             {
                 return NotFound();
             }
 
-            _context.PetTypes.Remove(record);
+            _context.Foods.Remove(record);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PetTypeExists(long id)
+        private bool FoodExists(long id)
         {
-            return (_context.PetTypes?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Foods?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

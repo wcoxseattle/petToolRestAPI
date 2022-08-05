@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using PetToolAPI.Utils;
+
 namespace PetToolAPI.Models
 {
     public class AppDbContext : DbContext
@@ -9,10 +11,11 @@ namespace PetToolAPI.Models
         {
 
         }
+
         public DbSet<Activity> Activities { get; set; } = null!;
         public DbSet<ActivityType> ActivityTypes { get; set; } = null!;
         public DbSet<FlagType> FlagTypes { get; set; } = null!;
-        public DbSet<Food> Food { get; set; } = null!;
+        public DbSet<Food> Foods { get; set; } = null!;
         public DbSet<Person> People { get; set; } = null!;
         public DbSet<Pet> Pets { get; set; } = null!;
         public DbSet<PetType> PetTypes { get; set; } = null!;

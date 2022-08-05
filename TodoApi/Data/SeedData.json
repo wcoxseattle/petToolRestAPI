@@ -1,0 +1,17 @@
+﻿{
+  "PetType": [
+    {
+      "Id": 1,
+      "Description": "Dog"
+    },
+    {
+      "Id": 2,
+      "Description": "Cat"
+    }
+  ],
+  "ActivityType": [
+    {
+
+    }
+  ]
+}

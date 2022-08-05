@@ -6,48 +6,48 @@ namespace PetToolAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PetTypesController : ControllerBase
+    public class ActivityTypesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public PetTypesController(AppDbContext context)
+        public ActivityTypesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/PetTypes
+        // GET: api/ActivityTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PetType>>> GetPetTypes()
+        public async Task<ActionResult<IEnumerable<ActivityType>>> GetActivityTypes()
         {
-            if (_context.PetTypes == null)
+            if (_context.ActivityTypes == null)
             {
                 return NotFound();
             }
-            return await _context.PetTypes.ToListAsync();
+            return await _context.ActivityTypes.ToListAsync();
         }
 
-        // GET: api/PetTypes/5
+        // GET: api/ActivityTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PetType>> GetPetType(long id)
+        public async Task<ActionResult<ActivityType>> GetActivityType(long id)
         {
-            if (_context.PetTypes == null)
+            if (_context.ActivityTypes == null)
             {
                 return NotFound();
             }
-            var PetType = await _context.PetTypes.FindAsync(id);
+            var ActivityType = await _context.ActivityTypes.FindAsync(id);
 
-            if (PetType == null)
+            if (ActivityType == null)
             {
                 return NotFound();
             }
 
-            return PetType;
+            return ActivityType;
         }
 
-        // PUT: api/PetTypes/5
+        // PUT: api/ActivityTypes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPetType(long id, PetType record)
+        public async Task<IActionResult> PutActivityType(long id, ActivityType record)
         {
             if (id != record.Id)
             {
@@ -62,7 +62,7 @@ namespace PetToolAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PetTypeExists(id))
+                if (!ActivityTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -75,45 +75,48 @@ namespace PetToolAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/PetTypes
+        // POST: api/ActivityTypes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PetType>> PostPetType(PetType record)
+        public async Task<ActionResult<ActivityType>> PostActivityType(ActivityType record)
         {
-            if (_context.PetTypes == null)
+            if (_context.ActivityTypes == null)
             {
-                return Problem("Entity set '_context.PetTypes'  is null.");
+                return Problem("Entity set '_context.ActivityTypes'  is null.");
             }
-            _context.PetTypes.Add(record);
+
+            _context.ActivityTypes.Add(record);
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetPetType", new { id = PetType.ID }, PetType);
-            return CreatedAtAction(nameof(GetPetType), new { id = record.Id }, record);
+            //return CreatedAtAction("GetActivityType", new { id = ActivityType.ID }, ActivityType);
+            return CreatedAtAction(nameof(GetActivityType), new { id = record.Id }, record);
         }
 
-        // DELETE: api/PetTypes/5
+        // DELETE: api/ActivityTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePetType(long id)
+        public async Task<IActionResult> DeleteActivityType(long id)
         {
-            if (_context.PetTypes == null)
+            if (_context.ActivityTypes == null)
             {
                 return NotFound();
             }
-            var PetType = await _context.PetTypes.FindAsync(id);
-            if (PetType == null)
+            
+            var record = await _context.ActivityTypes.FindAsync(id);
+            
+            if (record == null)
             {
                 return NotFound();
             }
 
-            _context.PetTypes.Remove(PetType);
+            _context.ActivityTypes.Remove(record);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PetTypeExists(long id)
+        private bool ActivityTypeExists(long id)
         {
-            return (_context.PetTypes?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.ActivityTypes?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
