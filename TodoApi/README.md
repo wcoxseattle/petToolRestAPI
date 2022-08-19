@@ -25,7 +25,12 @@ The CLI tool can be made available using the following command:
 dotnet tool install --global dotnet-ef
 ```
 
-To start a migration execute the following:
+The tool can be updated using the command:
+```
+dotnet tool update --global dotnet-ef
+```
+
+To start a migration execute the following in the root of your project directory:
 ```
 # Adds a migration file to the `Migrations` directory
 dotnet ef migrations add <name_of_migration>

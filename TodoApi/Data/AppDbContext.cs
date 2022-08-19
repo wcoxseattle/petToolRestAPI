@@ -1,13 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Duende.IdentityServer.EntityFramework.Options;
+using PetToolAPI.Models;
 
-using PetToolAPI.Utils;
-
-namespace PetToolAPI.Models
+namespace PetToolAPI.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : ApiAuthorizationDbContext<AppUser>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options, IOptions<OperationalStoreOptions> operationalStoreOptions)
+        : base(options, operationalStoreOptions)
         {
 
         }
@@ -31,6 +33,11 @@ namespace PetToolAPI.Models
                 new PetType { Id = 1, Description = "Dog" });
             modelBuilder.Entity<PetType>().HasData(
                 new PetType { Id = 2, Description = "Cat" });
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // You don't actually ever need to call this
         }
     }
 }
